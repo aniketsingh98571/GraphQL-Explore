@@ -30,7 +30,22 @@ export const typeDefs=`#graphql
         authors: [Author]
         author(id:ID!):Author
     }
+    type Mutation{
+        addGame(game:AddGameInput!):Game
+        deleteGame(id:ID!):[Game]
+        updateGame(id:ID!,edits:EditGameInput!):Game
+    }
+    input AddGameInput{
+        title:String!
+        platform:[String!]
+    }
+    input EditGameInput{
+        title:String
+        platform:[String]
+    }
 
 `
+//Query are treated as entry point to the api's, if we want to related data nesting, we just make use of existing Query endpoints and integrate/nest more based on requirements
 
+//Mutation means, if we want to delete or add certain data, then we add Mutation Query and add the respective resolver
 //types of data in graphql--->int,float,String,boolean,ID
